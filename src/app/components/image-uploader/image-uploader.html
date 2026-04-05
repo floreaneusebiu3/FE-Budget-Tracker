@@ -1,7 +1,9 @@
-<div class="custom-dropzone" (click)="fileInput.click()" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
-    <input #fileInput type="file" hidden accept=".png,.jpg,.jpeg" (change)="onFileChange($event)" />
+<div class="d-flex card shadow-sm border-0 rounded-4 h-100">
+    <div class="custom-dropzone h-100" (click)="fileInput.click()" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+        <input #fileInput type="file" hidden accept=".png,.jpg,.jpeg" (change)="onFileChange($event)" />
 
-    <i class="pi pi-cloud-upload mb-2 fs-3"></i>
-    <p class="m-0 fw-semibold fs-6">Click to upload or drag and drop</p>
-    <p class="m-0 small text-muted">PNG, JPG, JPEG</p>
+        <i class="pi pi-cloud-upload mb-2 fs-3"></i>
+        <p class="m-0 fw-semibold fs-6">Click to upload or drag and drop</p>
+        <p class="m-0 small text-muted">PNG, JPG, JPEG</p>
+    </div>
 </div>

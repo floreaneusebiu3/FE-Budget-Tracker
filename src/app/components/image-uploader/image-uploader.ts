@@ -1,12 +1,7 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
+import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
-
-interface UploadEvent {
-    originalEvent: Event;
-    files: File[];
-}
 
 @Component({
     selector: 'app-image-uploader',

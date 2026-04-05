@@ -1,4 +1,4 @@
-import { Component, computed, effect, input } from '@angular/core';
+import { Component, computed, effect, HostListener, input, output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-image-preview',
@@ -7,7 +7,24 @@ import { Component, computed, effect, input } from '@angular/core';
   styleUrl: './image-preview.scss',
 })
 export class ImagePreview {
-selectedFile = input<File | undefined>(undefined);
+  selectedFile = input<File | undefined>(undefined);
+  onSelectedFileRemoved = output<void>();
+  
+  readonly MIN_SCALE = 1;
+  readonly MAX_SCALE = 5;
+  readonly STEP = 0.1;
+
+  scale = signal(1);
+  // Clean up memory when the component is destroyed or file changes
+  // URL.createObjectURL creates a memory leak if not revoked
+  constructor() {
+    effect((onCleanup) => {
+      const url = this.imagePreview();
+      onCleanup(() => {
+        if (url) URL.revokeObjectURL(url);
+      });
+    });
+  }
 
   // Computed signal to create a preview URL
   // It only runs if the file is an image
@@ -20,14 +37,21 @@ selectedFile = input<File | undefined>(undefined);
     return undefined;
   });
 
-  // Clean up memory when the component is destroyed or file changes
-  // URL.createObjectURL creates a memory leak if not revoked
-  constructor() {
-    effect((onCleanup) => {
-      const url = this.imagePreview();
-      onCleanup(() => {
-        if (url) URL.revokeObjectURL(url);
-      });
-    });
+  @HostListener('wheel', ['$event'])
+  onWheel(event: WheelEvent) {
+    if (!event.ctrlKey) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const delta = event.deltaY > 0 ? -this.STEP : this.STEP;
+    const newScale = Math.min(Math.max(this.scale() + delta, this.MIN_SCALE), this.MAX_SCALE);
+
+    this.scale.set(newScale);
+  }
+
+  resetZoom() {
+    this.scale.set(1);
   }
 }
