@@ -1,0 +1,21 @@
+.image-scroll-viewport {
+  width: 50%;
+  flex: 1;
+  overflow-y: auto; // Vertical scroll for the long receipt
+  overflow-x: hidden; // Hide horizontal overflow during zoom
+  background: #f1f5f9;
+  cursor: zoom-in; // Visual cue to the user
+
+  .preview-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease-in-out; // Smooth zoom animation
+    transform-origin: center center; // Zoom from the middle
+    
+    &:hover {
+      // Zoom level (1.5 = 150%, 2.0 = 200%)
+      transform: scale(1.5); 
+    }
+  }
+}

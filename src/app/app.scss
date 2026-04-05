@@ -1,0 +1,14 @@
+.main {
+    /* Take full viewport height */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    /* Prevent horizontal overflow if components get wide */
+    width: 100%;
+    overflow: hidden;
+}
+
+.w-20 {
+  width: 20% !important;
+}

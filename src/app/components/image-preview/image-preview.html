@@ -1,0 +1,25 @@
+<div class="d-flex flex-column h-100">
+  
+  <div class="p-3 border-bottom bg-white">
+    <h6 class="m-0 text-truncate">Preview</h6>
+    <small class="text-muted" *ngIf="selectedFile()">
+      {{ selectedFile()?.name }}
+    </small>
+  </div>
+
+  @if (selectedFile()) {
+<div class="image-scroll-viewport p-2">
+  @if (imagePreview()) {
+    <img [src]="imagePreview()" alt="Preview" class="preview-img shadow-sm rounded" />
+  }
+</div>
+  } @else {
+    <div class="flex-grow-1 d-flex align-items-center justify-content-center text-muted p-4 text-center">
+      <div>
+        <i class="bi bi-image d-block mb-2" style="font-size: 2rem;"></i>
+        <p class="small">No image selected</p>
+      </div>
+    </div>
+  }
+  
+</div>
