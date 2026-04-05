@@ -1,9 +1,24 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+html,
+body {
+    height: 100%;
+    margin: 0;
 }
+
 app-root {
-  display: block;
-  height: 100%;
+    display: block;
+    height: 100%;
+    background-color: var(--p-surface-50);
+}
+
+.icon-button {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.icon-button:hover {
+    transform: scale(1.2);
+}
+
+.icon-button:active {
+    transform: scale(0.95);
 }

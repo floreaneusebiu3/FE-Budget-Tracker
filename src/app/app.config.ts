@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: NoraLight,
         options: {
-          darkModeSelector: '.my-app-dark' 
+           darkModeSelector: '.my-app-dark' 
         }
       }
     })

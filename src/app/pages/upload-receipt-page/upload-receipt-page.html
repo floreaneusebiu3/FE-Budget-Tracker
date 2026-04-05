@@ -1,0 +1,13 @@
+<div class="d-flex flex-column h-100">
+    <div class="m-1">
+        <app-image-uploader (onFileSelected)="selectedFile.set($event)"></app-image-uploader>
+    </div>
+    <div class="d-flex flex-grow-1 h-100" style="min-height: 0;">
+        <div class="col-3 h-100 p-1">
+            <app-image-preview [selectedFile]="selectedFile()"></app-image-preview>
+        </div>
+        <div class="flex-grow-1 p-1">
+            <app-save-receipt-info></app-save-receipt-info>
+        </div>
+    </div>
+</div>
